@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+plugins {
+    id 'java'
+	id 'eclipse'
+	id "net.ltgt.apt" version "0.15"
+	id "net.ltgt.apt-eclipse" version "0.15"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	
+	compile group: 'com.google.guava', name: 'guava', version: '23.0'
+	
+	compile group: 'com.google.dagger', name: 'dagger', version: '2.16'
+    annotationProcessor group: 'com.google.dagger', name: 'dagger-compiler', version: '2.16'
+    
+    testCompile group: 'org.assertj', name:'assertj-core', version:'3.9.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
+    testCompileOnly group: 'org.apiguardian', name: 'apiguardian-api', version: '1.0.0' // Avoid compiler warnings about @API annotations in JUnit code
+}
+
+repositories {
+    jcenter()
+}
+
+eclipse {
+    jdt.file.withProperties {
+        it['org.eclipse.jdt.core.formatter.lineSplit'] = '200'
+        it['org.eclipse.jdt.core.formatter.comment.line_length'] = '180'
+        it['org.eclipse.jdt.core.formatter.tabulation.char'] = 'space'
+        it['org.eclipse.jdt.core.formatter.tabulation.size'] = '4'
+        it['org.eclipse.jdt.core.formatter.join_wrapped_lines'] = 'false'
+        it['org.eclipse.jdt.core.compiler.doc.comment.support'] = 'enabled'
+        it['org.eclipse.jdt.core.compiler.problem.missingOverrideAnnotation'] = 'warning'
+        it['org.eclipse.jdt.core.compiler.problem.missingJavadocTags'] = 'warning'
+        it['org.eclipse.jdt.core.compiler.problem.parameterAssignment'] = 'ignore'
+        it['org.eclipse.jdt.core.compiler.problem.syntheticAccessEmulation'] = 'ignore'
+        it['org.eclipse.jdt.core.compiler.problem.unqualifiedFieldAccess'] = 'ignore'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
