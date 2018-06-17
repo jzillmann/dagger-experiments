@@ -8,7 +8,7 @@ import io.morethan.dagger_experiments.models.App;
 
 @Component(modules = { ServerModule.class, ServiceModule.class, AppModule.class })
 @Singleton
-public interface AppInterfaceComponent extends ServerComponent, ServiceComponent {
+public interface AppComponent extends ServerComponent, ServiceComponent {
 
     App app();
 
@@ -19,6 +19,6 @@ public interface AppInterfaceComponent extends ServerComponent, ServiceComponent
         Builder threshold(double threshold);
 
         @Override
-        AppInterfaceComponent build();
+        AppComponent build();
     }
 }
