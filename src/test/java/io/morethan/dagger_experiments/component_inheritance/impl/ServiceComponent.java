@@ -4,13 +4,10 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
-import io.morethan.dagger_experiments.models.App;
 
-@Component(modules = { ServerModule.class, AppModule.class })
+@Component(modules = { ServerModule.class, ServiceModule.class })
 @Singleton
-public interface AppComponent extends ServerComponent {
-
-    App app();
+public interface ServiceComponent extends ServerComponent {
 
     @Component.Builder
     interface Builder extends ServerComponent.Builder {
@@ -19,6 +16,6 @@ public interface AppComponent extends ServerComponent {
         Builder serviceName(String serviceName);
 
         @Override
-        AppComponent build();
+        ServiceComponent build();
     }
 }

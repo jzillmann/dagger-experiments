@@ -29,6 +29,6 @@ public class AppModule {
     @Provides
     @Singleton
     App app(Server server) {
-        return new App(server);
+        return new App(server, 0.0);
     }
 }
